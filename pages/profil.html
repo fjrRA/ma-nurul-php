@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Sekolah - MA Nurul Hidayah Majalangu</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../img/logo.png">
+    <style>
+        /* Global Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            background-color: #6610f2;
+        }
+
+        /* Navbar */
+        .navbar-logo {
+            max-width: 50px;
+            margin-right: 15px;
+        }
+
+        .bg-navbar {
+            background-color: #6610f2;
+        }
+
+
+        /* Section Profil */
+        #profil {
+            background-color: #f9f9f9;
+            padding: 40px 15px;
+            /* Mengurangi padding di section */
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        #profil h2 {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #profil p {
+            color: #666;
+        }
+
+        #profil ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        #profil ul li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        #profil ul li::before {
+            content: '\f058';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: #007bff;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 20px 0;
+            /* Mengurangi padding pada footer */
+        }
+
+        .footer-logo {
+            width: 150px;
+            /* Memperkecil logo di footer */
+            height: auto;
+        }
+
+        .footer .social-media a {
+            color: #f9f9f9;
+            font-size: 1.2rem;
+            /* Memperkecil ukuran ikon sosial media */
+            margin-right: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer .social-media a:hover {
+            color: #007bff;
+        }
+
+        .footer .text-center {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 15px;
+            /* Mengurangi jarak pada bagian bawah footer */
+            font-size: 0.9rem;
+            /* Memperkecil teks hak cipta */
+        }
+
+        /* Animasi */
+        .footer .social-media a:hover {
+            color: #007bff;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-navbar p-3 shadow">
+        <div class="container">
+            <a class="navbar-brand text-white" href="../index.html">
+                <img src="../img/logo.png" class="navbar-logo" alt="Logo">
+                MA Nurul Hidayah Majalangu
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item "><a class="nav-link text-white ml-3" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-white ml-3" href="profil.html">Profil Sekolah</a></li>
+                    <li class="nav-item"><a class="nav-link text-white ml-3" href="data.html">Data</a></li>
+                    <li class="nav-item"><a class="nav-link text-white ml-3" href="galeri.html">Galeri</a></li>
+                    <li class="nav-item"><a class="nav-link text-white ml-3" href="fasilitas.html">Fasilitas</a></li>
+                    <li class="nav-item"><a class="nav-link text-white ml-3" href="kontak.html">Kontak</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profil Sekolah Section -->
+    <section id="profil" class="container mt-5">
+        <h2>Tentang Kami</h2>
+        <p>MA Nurul Hidayah Majalangu adalah lembaga pendidikan Islam yang memiliki visi mencetak siswa berprestasi dan
+            berakhlakul karimah. Sekolah ini dilengkapi dengan fasilitas modern dan tenaga pengajar yang kompeten, serta
+            komitmen dalam mengembangkan potensi setiap siswa.</p>
+        <p>MA Nurul Hidayah Majalangu didirikan pada tahun 1998 di bawah naungan Yayasan Nurul Hidayah Majalangu.
+            Terletak di kecamatan Watukumpul, madrasah ini menjadi satu-satunya lembaga pendidikan setingkat SLTA
+            berbasis keagamaan di wilayahnya.</p>
+        <p>MA Nurul Hidayah Majalangu adalah lembaga pendidikan yang berfokus pada pengembangan karakter, ilmu agama,
+            dan keterampilan akademik. Kami berkomitmen untuk menyediakan lingkungan belajar yang positif dan mendukung
+            bagi setiap siswa.</p>
+
+        <!-- Visi dan Misi -->
+        <div class="mt-4">
+            <h3>Visi dan Misi</h3>
+            <p><strong>Visi:</strong> Terwujudnya Peserta Didik Yang Islami, Berakhlak Mulia, Cerdas dan Terampil.</p>
+            <p><strong>Misi:</strong></p>
+            <ul>
+                <li>Menanamkan keimanan dan perilaku terpuji melalui pembiasaan pengalaman ajaran agama yang berhaluan
+                    ahlusinnah wal jama'ah.</li>
+                <li>Mewujudkan warga madrasah yang memiliki kepedulian terhadap diri sendiri, lingkungan dan berestetika
+                    tinggi.</li>
+                <li>Mewujudkan kegiatan pembelajaran yang efektif, inovatif, aktif, dan menyenangkan.</li>
+                <li>Mengadakan pengamatan dalam rangka menemukan siswa yang berpotensi dalam bidang keilmuan,
+                    ketrampilan seni dan olahraga.</li>
+                <li>Membina dan mengikutsertakan peserta didik dalam kegiatan perlombaan di berbagai sains, ketrampilan
+                    seni dan olahraga.</li>
+                <li>Menanamkan ketrampilan bagi peserta didik melalui kegiatan pelatihan, kewirausahaan dan pengembangan
+                    diri yang terencana dan berkesinambungan.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 d-flex align-items-center">
+                    <img class="footer-logo mr-3" src="../img/logo.png" alt="Logo Sekolah">
+                    <div>
+                        <h5>MA Nurul Hidayah Majalangu</h5>
+                        <p>Jl. Cipinang RT 06 RW 03 (Utara Kantor POS) Desa Majalangu, Kec. Watukumpul, Kab. Pemalang
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h5>Ikuti Kami</h5>
+                    <a href="https://www.facebook.com/manurhidma" target="_blank"
+                        class="fab fa-facebook fa-2x mx-2"></a>
+                    <a href="https://www.instagram.com/manurhidma/" target="_blank"
+                        class="fab fa-instagram fa-2x mx-2"></a>
+                    <a href="https://www.youtube.com/@manurhidma" target="_blank" class="fab fa-youtube fa-2x mx-2"></a>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h5>Lokasi Kami</h5>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.772638430415!2d109.43077627442338!3d-7.15226647016567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6fe597b8a940d1%3A0x4ff50559901b1ade!2sMadrasah%20Aliyah%20Nurul%20Hidayah!5e0!3m2!1sid!2sid!4v1727694151347!5m2!1sid!2sid"
+                        width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="text-center py-3 mt-3">
+            <p>&copy; All rights reserved. Made by Dava Alif Alfa Rizqi.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

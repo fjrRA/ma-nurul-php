@@ -1,0 +1,112 @@
+{
+  "Galeri": [
+    {
+      "id": "1",
+      "gambarGaleri": "../img/29.jpg"
+    },
+    {
+      "id": "2",
+      "gambarGaleri": "../img/15.jpg"
+    },
+    {
+      "id": "3",
+      "gambarGaleri": "../img/4.jpg"
+    },
+    {
+      "id": "4",
+      "gambarGaleri": "../img/10.jpg"
+    },
+    {
+      "id": "5",
+      "gambarGaleri": "../img/8.jpeg"
+    },
+    {
+      "id": "6",
+      "gambarGaleri": "../img/7.jpeg"
+    },
+    {
+      "id": "7",
+      "gambarGaleri": "../img/6.jpg"
+    },
+    {
+      "id": "8",
+      "gambarGaleri": "../img/9.jpg"
+    },
+    {
+      "id": "9",
+      "gambarGaleri": "../img/5.png"
+    },
+    {
+      "id": "10",
+      "gambarGaleri": "../img/22.jpg"
+    },
+    {
+      "id": "11",
+      "gambarGaleri": "../img/12.jpg"
+    },
+    {
+      "id": "13",
+      "gambarGaleri": "../img/13.jpg"
+    },
+    {
+      "id": "14",
+      "gambarGaleri": "../img/23.jpg"
+    },
+    {
+      "id": "15",
+      "gambarGaleri": "../img/11.jpeg"
+    },
+    {
+      "id": "16",
+      "gambarGaleri": "../img/16.jpeg"
+    },
+    {
+      "id": "17",
+      "gambarGaleri": "../img/17.jpg"
+    },
+    {
+      "id": "18",
+      "gambarGaleri": "../img/18.jpeg"
+    },
+    {
+      "id": "19",
+      "gambarGaleri": "../img/19.jpg"
+    },
+    {
+      "id": "20",
+      "gambarGaleri": "../img/20.jpg"
+    },
+    {
+      "id": "21",
+      "gambarGaleri": "../img/21.jpg"
+    },
+    {
+      "id": "22",
+      "gambarGaleri": "../img/14.jpeg"
+    },
+    {
+      "id": "23",
+      "gambarGaleri": "../img/24.jpg"
+    },
+    {
+      "id": "24",
+      "gambarGaleri": "../img/25.jpg"
+    },
+    {
+      "id": "25",
+      "gambarGaleri": "../img/26.jpg"
+    },
+    {
+      "id": "26",
+      "gambarGaleri": "../img/27.jpg"
+    },
+    {
+      "id": "27",
+      "gambarGaleri": "../img/28.jpg"
+    },
+    {
+      "id": "28",
+      "gambarGaleri": "../img/30.jpg"
+    }
+  ] 
+}

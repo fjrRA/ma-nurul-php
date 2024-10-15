@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MA Nurul Hidayah Majalangu - Data Siswa & Guru</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../img/logo.png">
+    <!-- FontAwesome for Icons -->
+    <style>
+        /* Navbar */
+        .navbar-logo {
+            max-width: 50px;
+            margin-right: 15px;
+        }
+
+        /* Background Color */
+        .bg-indigo {
+            background-color: #6610f2;
+        }
+
+        .bg-navbar {
+            background-color: #6610f2;
+        }
+
+        /* Header */
+        #data h2 {
+            text-align: center;
+            font-weight: bold;
+            color: #343a40;
+            margin-bottom: 30px;
+        }
+
+        /* Card Styling */
+        .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-img-top {
+            border-radius: 0;
+        }
+
+        .card-body {
+            text-align: center;
+            background: linear-gradient(135deg, #6f42c1, #6610f2);
+            color: white;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 20px 0;
+            background-color: #343a40;
+            color: white;
+        }
+
+        .footer-logo {
+            width: 150px;
+            height: auto;
+        }
+
+        .footer .social-media a {
+            color: #f9f9f9;
+            font-size: 1.2rem;
+            margin-right: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer .social-media a:hover {
+            color: #007bff;
+            transform: scale(1.1);
+        }
+
+        .footer .text-center {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 15px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-indigo">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-navbar p-3 shadow">
+            <div class="container">
+                <a class="navbar-brand text-white" href="../index.html">
+                    <img src="../img/logo.png" class="navbar-logo" alt="Logo">
+                    MA Nurul Hidayah Majalangu
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item "><a class="nav-link text-white ml-3" href="../index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link text-white ml-3" href="profil.html">Profil Sekolah</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link text-white ml-3" href="data.html">Data</a></li>
+                        <li class="nav-item"><a class="nav-link text-white ml-3" href="galeri.html">Galeri</a></li>
+                        <li class="nav-item"><a class="nav-link text-white ml-3" href="fasilitas.html">Fasilitas</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link text-white ml-3" href="kontak.html">Kontak</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Data Guru -->
+        <section id="data" class="container mt-5">
+
+            <h2 class="mt-5 text-white">Data Guru</h2>
+            <div class="row" id="guruContainer">
+            </div>
+
+            <h2 class="mt-5 text-white">Data Kelas</h2>
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table table-striped text-center ">
+                        <thead>
+                            <tr>
+                                <th class="text-white">Kelas</th>
+                                <th class="text-white">Jumlah Siswa Laki-laki</th>
+                                <th class="text-white">Jumlah Siswa Perempuan</th>
+                                <th class="text-white">Total Siswa</th>
+                            </tr>
+                        </thead>
+                        <tbody id="kelas-data">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Fungsi untuk menampilkan data guru dari JSON
+        function fetchDataGuru() {
+            fetch('../DATA/dataGuru.json')
+                .then(response => response.json())
+                .then(data => {
+                    const guruContainer = document.getElementById('guruContainer');
+                    let htmlContent = '';
+
+                    // Loop melalui setiap guru dalam data JSON
+                    data.Guru.forEach(guru => {
+                        htmlContent += `
+                            <div class="col-md-3 mb-4">
+                                <div class="card">
+                                    <img src="${guru.gambarGuru}" class="card-img-top" alt="${guru.namaGuru}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${guru.namaGuru}</h5>
+                                        <p class="card-text">
+                                            <strong>Jabatan:</strong> ${guru.jabatan}<br>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    });
+
+                    // Masukkan konten HTML yang di-generate ke dalam container
+                    guruContainer.innerHTML = htmlContent;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function fecthDataKelas() {
+            // Fungsi untuk menampilkan data kelas
+            fetch('../DATA/dataKelas.json')
+                .then(response => response.json())
+                .then(data => {
+                    const kelasTableBody = document.getElementById('kelas-data');
+                    kelasTableBody.innerHTML = '';
+
+                    data.Kelas.forEach(kelas => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                        <td class="text-white">Kelas ${kelas.tingkatKelas}</td>
+                        <td class="text-white">${kelas.jumlahSiswaLelaki}</td>
+                        <td class="text-white">${kelas.jumlahSiswaPerempuan}</td>
+                        <td class="text-white">${kelas.totalSiswa}</td>
+                    `;
+                        kelasTableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Panggil fungsi fetchDataGuru setelah halaman selesai dimuat
+        document.addEventListener('DOMContentLoaded', fetchDataGuru);
+        document.addEventListener('DOMContentLoaded', fecthDataKelas);
+    </script>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 d-flex align-items-center">
+                    <img class="footer-logo mr-3" src="../img/logo.png" alt="Logo Sekolah">
+                    <div>
+                        <h5>MA Nurul Hidayah Majalangu</h5>
+                        <p>Jl. Cipinang RT 06 RW 03 (Utara Kantor POS) Desa Majalangu, Kec. Watukumpul, Kab. Pemalang
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h5>Ikuti Kami</h5>
+                    <a href="https://www.facebook.com/manurhidma" target="_blank"
+                        class="fab fa-facebook fa-2x mx-2"></a>
+                    <a href="https://www.instagram.com/manurhidma/" target="_blank"
+                        class="fab fa-instagram fa-2x mx-2"></a>
+                    <a href="https://www.youtube.com/@manurhidma" target="_blank" class="fab fa-youtube fa-2x mx-2"></a>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h5>Lokasi Kami</h5>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.772638430415!2d109.43077627442338!3d-7.15226647016567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6fe597b8a940d1%3A0x4ff50559901b1ade!2sMadrasah%20Aliyah%20Nurul%20Hidayah!5e0!3m2!1sid!2sid!4v1727694151347!5m2!1sid!2sid"
+                        width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="text-center py-3 mt-3">
+            <p>&copy; All rights reserved. Made by Dava Alif Alfa Rizqi.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

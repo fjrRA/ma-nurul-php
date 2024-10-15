@@ -1,0 +1,101 @@
+{
+  "Guru": 
+  [
+    {
+    "id": "1",
+    "namaGuru": "Ulfah Hidayatiningsih, S.E.",
+    "jabatan": "Guru Ekonomi",
+    "gambarGuru": "../img/ulfah.jpg"
+    },
+    {
+    "id": "2",
+    "namaGuru": "Fatkhuri, S.Ag.",
+    "jabatan": "Guru Aqidah Akhlak",
+    "gambarGuru": "../img/fatkhuri.jpg"
+    },
+    {
+    "id": "3",
+    "namaGuru": "Rokhatin, S.Ag.",
+    "jabatan": "Guru Fiqih",
+    "gambarGuru": "../img/rokhatin.jpg"
+    },
+    {
+    "id": "4",
+    "namaGuru": "Sri Khayati, S.Sos.",
+    "jabatan": "Guru Sosiologi",
+    "gambarGuru": "../img/sri.jpg"
+    },
+    {
+    "id": "5",
+    "namaGuru": "Agus Aminudin, S.Sos.",
+    "jabatan": "Guru PKn",
+    "gambarGuru": "../img/agus.jpg"
+    },
+    {
+    "id": "6",
+    "namaGuru": "Nani Ernawati, S.Pd.",
+    "jabatan": "Guru Kimia & Biologi",
+    "gambarGuru": "../img/nani.jpg"
+    },
+    {
+    "id": "7",
+    "namaGuru": "Ahmad Khariri, S.Ag.",
+    "jabatan": "Guru Bahasa Arab & Ke-NU-an",
+    "gambarGuru": "../img/khariri.jpg"
+    },
+    {
+    "id": "8",
+    "namaGuru": "Hanif Udin, S.Pd.",
+    "jabatan": "Guru Geografi & Bahasa Indonesia",
+    "gambarGuru": "../img/udin.jpg"
+    },
+    {
+    "id": "9",
+    "namaGuru": "M. Kholid Mawardi, S.Kom.",
+    "jabatan": "Guru TIK",
+    "gambarGuru": "../img/kholid.jpg"
+    },
+    {
+    "id": "10",
+    "namaGuru": "Yuyun Utami, S.Pd.",
+    "jabatan": "Guru Bahasa Inggris",
+    "gambarGuru": "../img/yuyun.jpg"
+    },
+    {
+    "id": "11",
+    "namaGuru": "Aziz Arif Rizkiyanto, S.Pd.",
+    "jabatan": "Guru Penjasorkes",
+    "gambarGuru": "../img/aziz.jpg"
+    },
+    {
+    "id": "12",
+    "namaGuru": "Dwi Fahmi Ilmiawan, S.Pd.",
+    "jabatan": "Guru Matematika & Fisika",
+    "gambarGuru": "../img/dwi.jpg"
+    },
+    {
+    "id": "13",
+    "namaGuru": "Rohmat",
+    "jabatan": "Guru Qur'an Hadist",
+    "gambarGuru": "../img/rohmat.jpg"
+    },
+    {
+    "id": "14",
+    "namaGuru": "Irma Hardika Saputri, M.Pd.",
+    "jabatan": "Guru Ekonomi & Bahasa Indonesia",
+    "gambarGuru": "../img/irma.jpg"
+    },
+    {
+    "id": "15",
+    "namaGuru": "Ainun Nafa Layina Tunisa, S.S.",
+    "jabatan": "Guru Seni & Bahasa Jawa",
+    "gambarGuru": "../img/ainun.jpg"
+    },
+    {
+    "id": "16",
+    "namaGuru": "Riastifani Nur Fauziyah, S.A.P.",
+    "jabatan": "Guru Tata Usaha",
+    "gambarGuru": "../img/fani.jpg"
+    }
+  ]
+}
