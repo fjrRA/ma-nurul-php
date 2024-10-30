@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +20,7 @@
 
         .h1-title {
             text-align: center;
-            margin: 24px auto;  
+            margin: 24px auto;
             font-size: 48px;
         }
 
@@ -153,27 +154,29 @@
         }
     </style>
 </head>
+
 <body>
 
-<div class="sidebar">
-    <h2>Open Admin</h2>
-    <ul>
-    <li><a href="index.php">Dashboard</a></li>
-        <li><a href="data-guru-admin.php">Data Admin</a></li>
-        <li><a href="siswa-admin.php">Siswa Admin</a></li>
-        <li><a href="galeri-admin.php">Data Galeri Admin</a></li>
-    </ul>
-</div>
-
-<div class="main-content">
-    <div class="header">
-        <h1>Dashboard</h1>
-        <div class="user-profile">Administrator</div>
-    
+    <div class="sidebar">
+        <h2>Open Admin</h2>
+        <ul>
+            <li><a href="index.php">Dashboard</a></li>
+            <li><a href="data-guru-admin.php">Data Guru Admin</a></li>
+            <li><a href="data-kelas-admin.php">Data Kelas Admin</a></li>
+            <li><a href="data-galeri-admin.php">Data Galeri Admin</a></li>
+        </ul>
     </div>
 
-<h1 class="h1-title"> Selamat Datang</h1>
-</div>
+    <div class="main-content">
+        <div class="header">
+            <h1>Dashboard</h1>
+            <div class="user-profile">Administrator</div>
+
+        </div>
+
+        <h1 class="h1-title"> Selamat Datang</h1>
+    </div>
 
 </body>
+
 </html>

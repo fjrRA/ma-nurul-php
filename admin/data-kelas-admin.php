@@ -2,8 +2,9 @@
 // Memasukkan file koneksi
 include '../config.php';
 
-// Query untuk mendapatkan data dari tabel guru, termasuk gambar
-$sql = "SELECT id_guru, namaGuru, jabatanGuru, gambarGuru FROM dataguru";
+// Query untuk mendapatkan data dari tabel kelas
+// Query untuk mendapatkan data dari tabel datakelas
+$sql = "SELECT id_kelas, tingkatKelas, jumlahSiswaLelaki, jumlahSiswaPerempuan, totalSiswa FROM datakelas";
 $result = $conn->query($sql);
 
 ?>
@@ -14,7 +15,7 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Admin</title>
+    <title>Data Siswa Admin</title>
     <style>
         * {
             box-sizing: border-box;
@@ -227,15 +228,14 @@ $result = $conn->query($sql);
             document.getElementById("modal").style.display = "flex";
         }
 
-        // JavaScript untuk membuka modal edit dan memuat data
-        function openEditModal(id, namaGuru, jabatanGuru, gambarGuru) {
+        function openEditModal(id, kelas, jumlah_putra, jumlah_putri, total) {
             document.getElementById("modal-edit").style.display = "flex";
             document.getElementById("edit-id").value = id;
-            document.getElementById("edit-nama").value = namaGuru;
-            document.getElementById("edit-jabatan").value = jabatanGuru;
-            document.getElementById("edit-foto").value = gambarGuru;
+            document.getElementById("edit-kelas").value = kelas;
+            document.getElementById("edit-jumlah-putra").value = jumlah_putra;
+            document.getElementById("edit-jumlah-putri").value = jumlah_putri;
+            document.getElementById("edit-total").value = total;
         }
-
 
         function closeModal() {
             document.getElementById("modal").style.display = "none";
@@ -245,20 +245,19 @@ $result = $conn->query($sql);
 </head>
 
 <body>
-
     <div class="sidebar">
         <h2>Data Admin</h2>
         <ul>
             <li><a href="index.php">Dashboard</a></li>
             <li><a href="data-guru-admin.ph">Data Guru Admin</a></li>
-            <li><a href="data-kelas-admin.php">Siswa Kelas Admin</a></li>
+            <li><a href="data-kelas-admin.php">Data Kelas Admin</a></li>
             <li><a href="data-galeri-admin.php">Data Galeri Admin</a></li>
         </ul>
     </div>
 
     <div class="main-content">
         <div class="header">
-            <h1>Data Guru Admin</h1>
+            <h1>Data Kelas Siswa Admin</h1>
             <div class="user-profile">Administrator</div>
         </div>
 
@@ -270,29 +269,31 @@ $result = $conn->query($sql);
         <table class="data-table">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Nama Guru</th>
-                    <th>Jabatan Guru</th>
-                    <th>Foto</th>
+                    <th>ID Kelas</th>
+                    <th>Tingkat Kelas</th>
+                    <th>Jumlah Siswa Laki-laki</th>
+                    <th>Jumlah Siswa Perempuan</th>
+                    <th>Total Siswa</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 <?php while ($row = $result->fetch_assoc()) { ?>
                     <tr>
-                        <td><?php echo $row["id_guru"]; ?></td>
-                        <td><?php echo $row["namaGuru"]; ?></td>
-                        <td><?php echo $row["jabatanGuru"]; ?></td>
-                        <td>
-                            <img src="<?php echo "../" . $row["gambarGuru"]; ?>" alt="Foto Guru" style="width: 100px; height: auto;">
-                        </td>
-
+                        <td><?php echo $row["id_kelas"]; ?></td>
+                        <td><?php echo $row["tingkatKelas"]; ?></td>
+                        <td><?php echo $row["jumlahSiswaLelaki"]; ?></td>
+                        <td><?php echo $row["jumlahSiswaPerempuan"]; ?></td>
+                        <td><?php echo $row["totalSiswa"]; ?></td>
                         <td>
                             <a href="javascript:void(0);" onclick="openEditModal(
-                        '<?php echo $row["id_guru"]; ?>', 
-                        '<?php echo addslashes($row["namaGuru"]); ?>', 
-                        '<?php echo addslashes($row["jabatanGuru"]); ?>')">Edit</a> |
-                            <a href='guru/hapus-guru.php?id=<?php echo $row["id_guru"]; ?>' onclick='return confirm("Yakin ingin menghapus?")'>Hapus</a>
+                        '<?php echo $row["id_kelas"]; ?>', 
+                        '<?php echo $row["tingkatKelas"]; ?>', 
+                        '<?php echo $row["jumlahSiswaLelaki"]; ?>', 
+                        '<?php echo $row["jumlahSiswaPerempuan"]; ?>', 
+                        '<?php echo $row["totalSiswa"]; ?>')">Edit</a>
+                            |
+                            <a href='kelas/hapus-kelas.php?id=<?php echo $row["id_kelas"]; ?>' onclick='return confirm("Yakin ingin menghapus?")'>Hapus</a>
                         </td>
                     </tr>
                 <?php } ?>
@@ -301,25 +302,27 @@ $result = $conn->query($sql);
 
     </div>
 
-    <!-- Modal untuk Form Tambah Guru -->
-
-
+    <!-- Modal untuk Form Tambah Kelas -->
     <div id="modal" class="modal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal()">&times;</span>
-            <div class="modal-header">Tambah Data Guru</div>
-            <form action="guru/tambah-guru.php" method="POST" enctype="multipart/form-data">
+            <div class="modal-header">Tambah Data Kelas</div>
+            <form action="kelas/tambah-kelas.php" method="POST">
                 <div class="form-group">
-                    <label>Nama:</label>
-                    <input type="text" name="nama" required>
+                    <label>Tingkat Kelas:</label>
+                    <input type="text" name="tingkatKelas" required>
                 </div>
                 <div class="form-group">
-                    <label>Jabatan:</label>
-                    <input type="text" name="jabatan" required>
+                    <label>Jumlah Siswa Laki-laki:</label>
+                    <input type="text" name="jumlahSiswaLelaki" required>
                 </div>
                 <div class="form-group">
-                    <label>Foto:</label>
-                    <input type="file" name="gambar" required>
+                    <label>Jumlah Siswa Perempuan:</label>
+                    <input type="text" name="jumlahSiswaPerempuan" required>
+                </div>
+                <div class="form-group">
+                    <label>Total Siswa:</label>
+                    <input type="text" name="totalSiswa" required>
                 </div>
                 <button type="submit" class="btn-submit">Tambah</button>
             </form>
@@ -327,30 +330,35 @@ $result = $conn->query($sql);
     </div>
 
 
-    <!-- Modal untuk Form Edit Guru -->
+    <!-- Modal untuk Form Edit Kelas -->
+    <!-- Modal untuk Form Edit Kelas -->
     <div id="modal-edit" class="modal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal()">&times;</span>
-            <h2>Edit Data Guru</h2>
-            <form action="guru/edit-guru.php" method="POST" enctype="multipart/form-data">
+            <h2>Edit Data Kelas</h2>
+            <form action="kelas/edit-kelas.php" method="POST">
                 <input type="hidden" name="id" id="edit-id">
                 <div class="form-group">
-                    <label>Nama:</label>
-                    <input type="text" name="namaGuru" id="edit-nama" required>
+                    <label>Tingkat Kelas:</label>
+                    <input type="text" name="tingkatKelas" id="edit-kelas" required>
                 </div>
                 <div class="form-group">
-                    <label>Jabatan:</label>
-                    <input type="text" name="jabatanGuru" id="edit-jabatan" required>
+                    <label>Jumlah Siswa Laki-laki:</label>
+                    <input type="text" name="jumlahSiswaLelaki" id="edit-jumlah-putra" required>
                 </div>
                 <div class="form-group">
-                    <label>Foto:</label>
-                    <input type="file" name="gambarGuru" id="edit-gambar" required>
+                    <label>Jumlah Siswa Perempuan:</label>
+                    <input type="text" name="jumlahSiswaPerempuan" id="edit-jumlah-putri" required>
                 </div>
-                <button type="submit" class="btn-submit">Simpan</button>
+                <div class="form-group">
+                    <label>Total Siswa:</label>
+                    <input type="text" name="totalSiswa" id="edit-total" required>
+                </div>
+                <button type="submit" class="btn-submit">Simpan Perubahan</button>
             </form>
-
         </div>
     </div>
+
 
 </body>
 

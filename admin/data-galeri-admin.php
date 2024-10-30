@@ -2,17 +2,19 @@
 // Memasukkan file koneksi
 include '../config.php';
 
-// Query untuk mendapatkan data dari tabel kelas
-$sql = "SELECT id_siswa, kelas, jumlah_putra, jumlah_putri, total FROM siswa";
+// Query untuk mendapatkan data dari tabel galeri
+$sql = "SELECT id_galeri, dataGaleri FROM datagaleri";
 $result = $conn->query($sql);
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Siswa Admin</title>
+    <title>Data Admin</title>
     <style>
         * {
             box-sizing: border-box;
@@ -155,9 +157,10 @@ $result = $conn->query($sql);
             cursor: pointer;
         }
 
-                /* Tambahkan Style untuk Modal */
-                .modal {
-            display: none; /* Hidden secara default */
+        /* Tambahkan Style untuk Modal */
+        .modal {
+            display: none;
+            /* Hidden secara default */
             position: fixed;
             top: 0;
             left: 0;
@@ -218,138 +221,107 @@ $result = $conn->query($sql);
         }
     </style>
 
-<script>
+    <script>
         // JavaScript untuk membuka dan menutup modal
         function openModal() {
             document.getElementById("modal").style.display = "flex";
         }
 
-        function openEditModal(id, kelas, jumlah_putra, jumlah_putri, total) {
-    document.getElementById("modal-edit").style.display = "flex";
-    document.getElementById("edit-id").value = id;
-    document.getElementById("edit-kelas").value = kelas;
-    document.getElementById("edit-jumlah-putra").value = jumlah_putra;   
-    document.getElementById("edit-jumlah-putri").value = jumlah_putri;     
-    document.getElementById("edit-total").value = total;   
-}
+        // JavaScript untuk membuka modal edit dan memuat data
+        function openEditModal(id) {
+            document.getElementById("modal-edit").style.display = "flex";
+            document.getElementById("edit-id").value = id;
+        }
 
-function closeModal() {
+        function closeModal() {
             document.getElementById("modal").style.display = "none";
             document.getElementById("modal-edit").style.display = "none";
         }
     </script>
 </head>
+
 <body>
 
-<div class="sidebar">
-    <h2>Data Admin</h2>
-    <ul>
-        <li><a href="index.php">Dashboard</a></li>
-        <li><a href="data-guru-admin.ph">Data Admin</a></li>
-        <li><a href="siswa-admin.php">Siswa Admin</a></li>
-        <li><a href="galeri-admin.php">Data Galeri Admin</a></li>
-    </ul>
-</div>
-
-<div class="main-content">
-    <div class="header">
-        <h1>Data Kelas Siswa Admin</h1>
-        <div class="user-profile">Administrator</div>
+    <div class="sidebar">
+        <h2>Data Admin</h2>
+        <ul>
+            <li><a href="index.php">Dashboard</a></li>
+            <li><a href="data-guru-admin.ph">Data Guru Admin</a></li>
+            <li><a href="data-kelas-admin.php">Siswa Kelas Admin</a></li>
+            <li><a href="data-galeri-admin.php">Data Galeri Admin</a></li>
+        </ul>
     </div>
 
-    <div class="buttons">
-        <!-- Tambah tombol untuk membuka modal -->
-        <button class="btn btn-new" onclick="openModal()">+ New</button>
+    <div class="main-content">
+        <div class="header">
+            <h1>Data Guru Admin</h1>
+            <div class="user-profile">Administrator</div>
+        </div>
+
+        <div class="buttons">
+            <!-- Tambah tombol untuk membuka modal -->
+            <button class="btn btn-new" onclick="openModal()">+ New</button>
+        </div>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Foto</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($row = $result->fetch_assoc()) { ?>
+                    <tr>
+                        <td><?php echo $row["id_galeri"]; ?></td>
+                        <td>
+                            <img src="<?php echo "../" . $row["dataGaleri"]; ?>" alt="Foto Galeri" style="width: 100px; height: auto;">
+                        </td>
+                        <td>
+                            <a href='javascript:void(0);' onclick='openEditModal(
+                    "<?php echo $row["id_galeri"]; ?>")'>Edit</a> |
+                            <a href='galeri/hapus-galeri.php?id=<?php echo $row["id_galeri"]; ?>' onclick='return confirm("Yakin ingin menghapus?")'>Hapus</a>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+
+
     </div>
 
-    <table class="data-table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Kelas</th>
-                <th>Jumlah Putra</th>
-                <th>Jumlah Putri</th>
-                <th>Total</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <?php while($row = $result->fetch_assoc()) { ?>
-            <tr>
-                <td><?php echo $row["id_siswa"]; ?></td>
-                <td><?php echo $row["kelas"]; ?></td>
-                <td><?php echo $row["jumlah_putra"]; ?></td>
-                <td><?php echo $row["jumlah_putri"]; ?></td>
-                <td><?php echo $row["total"]; ?></td>
-                <td>
-                    <!-- Tambah tombol Edit untuk membuka modal edit -->
-                    <a href="javascript:void(0);" onclick="openEditModal(
-    '<?php echo $row["id_siswa"]; ?>', 
-    '<?php echo addslashes($row["kelas"]); ?>', 
-    '<?php echo addslashes($row["jumlah_putra"]); ?>', 
-    '<?php echo addslashes($row["jumlah_putri"]); ?>', 
-    '<?php echo addslashes($row["total"]); ?>')">Edit</a> 
- |
-                    <a href='siswa/hapus-siswa.php?id=<?php echo $row["id_siswa"]; ?>' onclick='return confirm("Yakin ingin menghapus?")'>Hapus</a>
-                </td>
-            </tr>
-        <?php } ?>
-    </table>
-</div>
-
-<!-- Modal untuk Form Tambah Siswa -->
-<div id="modal" class="modal">
-    <div class="modal-content">
-        <span class="modal-close" onclick="closeModal()">&times;</span>
-        <div class="modal-header">Tambah Data Siswa</div>
-        <form action="siswa/tambah-siswa.php" method="POST">
-            <div class="form-group">
-                <label>Kelas:</label>
-                <input type="text" name="kelas" required>
-            </div>
-            <div class="form-group">
-                <label>Jumlah Putra:</label>
-                <input type="text" name="jumlah_putra" required>
-            </div>
-            <div class="form-group">
-                <label>Jumlah Putri:</label>
-                <input type="text" name="jumlah_putri" required>
-            </div>
-            <div class="form-group">
-                <label>Total:</label>
-                <input type="text" name="total" required>
-            </div>
-            <button type="submit" class="btn-submit">Tambah</button>
-        </form>
+    <!-- Modal untuk Form Tambah Galeri -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <div class="modal-header">Tambah Data Galeri</div>
+            <form action="galeri/tambah-galeri.php" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Foto:</label>
+                    <input type="file" name="dataGaleri" required>
+                </div>
+                <button type="submit" class="btn-submit">Tambah</button>
+            </form>
+        </div>
     </div>
-</div>
 
-<!-- Modal untuk Form Edit Siswa -->
-<div id="modal-edit" class="modal">
-    <div class="modal-content">
-        <span class="modal-close" onclick="closeModal()">&times;</span>
-        <h2>Edit Data Siswa</h2>
-        <form action="siswa/edit-siswa.php" method="POST">
-            <input type="hidden" name="id" id="edit-id">
-            <div class="form-group">
-                <label>Kelas:</label>
-                <input type="text" name="kelas" id="edit-kelas" required>
-            </div>
-            <div class="form-group">
-                <label>Jumlah Putra:</label>
-                <input type="text" name="jumlah_putra" id="edit-jumlah-putra" required>
-            </div>
-            <div class="form-group">
-                <label>Jumlah Putri:</label>
-                <input type="text" name="jumlah_putri" id="edit-jumlah-putri" required>
-            </div>
-            <div class="form-group">
-                <label>Total:</label>
-                <input type="text" name="total" id="edit-total" required>
-            </div>
-            <button type="submit" class="btn-submit">Simpan Perubahan</button>
-        </form>
+    <!-- Modal untuk Form Edit Galeri -->
+    <div id="modal-edit" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h2>Edit Data Galeri</h2>
+            <form action="galeri/edit-galeri.php" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="id" id="edit-id">
+                <div class="form-group">
+                    <label>Foto:</label>
+                    <input type="file" name="dataGaleri" id="edit-gambar" required>
+                </div>
+                <button type="submit" class="btn-submit">Simpan</button>
+            </form>
+        </div>
     </div>
-</div>
 
 </body>
+
 </html>

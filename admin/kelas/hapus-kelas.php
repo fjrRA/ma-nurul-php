@@ -3,7 +3,7 @@ include '../../config.php';
 
 $id = $_GET['id'];
 
-$sql = "DELETE FROM siswa WHERE id_siswa='$id'";
+$sql = "DELETE FROM datakelas WHERE id_kelas='$id'";
 
 if ($conn->query($sql) === TRUE) {
     echo "Data berhasil dihapus!";
@@ -11,5 +11,4 @@ if ($conn->query($sql) === TRUE) {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
-header("Location: ../siswa-admin.php");
-?>
+header("Location: ../data-kelas-admin.php");

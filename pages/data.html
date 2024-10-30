@@ -156,62 +156,165 @@
     </div>
 
     <script>
-        // Fungsi untuk menampilkan data guru dari JSON
+        // Tambahkan fungsi ini di bagian <script>
+        function startRealTimeUpdates() {
+            // Update data setiap 5 detik
+            setInterval(() => {
+                fetchDataGuru();
+                fetchDataKelas();
+            }, 5000); // 5000 ms = 5 detik
+        }
+
+        // Modifikasi fungsi fetchDataGuru untuk mendukung pembaruan real-time
         function fetchDataGuru() {
-            fetch('../DATA/dataGuru.json')
+            fetch('../get/get-guru.php')
                 .then(response => response.json())
                 .then(data => {
                     const guruContainer = document.getElementById('guruContainer');
                     let htmlContent = '';
 
-                    // Loop melalui setiap guru dalam data JSON
                     data.Guru.forEach(guru => {
+                        // Tambahkan atribut data-id untuk memudahkan pembaruan
                         htmlContent += `
-                            <div class="col-md-3 mb-4">
-                                <div class="card">
-                                    <img src="${guru.gambarGuru}" class="card-img-top" alt="${guru.namaGuru}">
-                                    <div class="card-body">
-                                        <h5 class="card-title">${guru.namaGuru}</h5>
-                                        <p class="card-text">
-                                            <strong>Jabatan:</strong> ${guru.jabatan}<br>
-                                        </p>
-                                    </div>
-                                </div>
+                    <div class="col-md-3 mb-4" data-guru-id="${guru.id}">
+                        <div class="card">
+                            <img src="${guru.gambarGuru}" class="card-img-top" alt="${guru.namaGuru}"
+                                 style="width: 100%; height: 250px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title">${guru.namaGuru}</h5>
+                                <p class="card-text">
+                                    <strong>Jabatan:</strong> ${guru.jabatan}<br>
+                                </p>
                             </div>
-                        `;
+                        </div>
+                    </div>
+                `;
                     });
 
-                    // Masukkan konten HTML yang di-generate ke dalam container
-                    guruContainer.innerHTML = htmlContent;
+                    // Periksa apakah konten berubah sebelum memperbarui DOM
+                    if (guruContainer.innerHTML !== htmlContent) {
+                        guruContainer.innerHTML = htmlContent;
+                        // Tambahkan animasi sederhana untuk item baru
+                        const cards = guruContainer.querySelectorAll('.card');
+                        cards.forEach(card => {
+                            card.style.animation = 'fadeIn 0.5s';
+                        });
+                    }
                 })
-                .catch(error => console.error('Error:', error));
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Tampilkan pesan error yang informatif
+                    const guruContainer = document.getElementById('guruContainer');
+                    guruContainer.innerHTML = `
+                <div class="col-12 text-center text-white">
+                    <p>Terjadi kesalahan saat memuat data. Mencoba memuat ulang...</p>
+                </div>
+            `;
+                });
         }
 
-        function fecthDataKelas() {
-            // Fungsi untuk menampilkan data kelas
-            fetch('../DATA/dataKelas.json')
+        // Modifikasi fungsi fetchDataKelas untuk mendukung pembaruan real-time
+        function fetchDataKelas() {
+            fetch('../get/get-kelas.php')
                 .then(response => response.json())
                 .then(data => {
                     const kelasTableBody = document.getElementById('kelas-data');
-                    kelasTableBody.innerHTML = '';
+                    let htmlContent = '';
 
                     data.Kelas.forEach(kelas => {
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
+                        htmlContent += `
+                    <tr data-kelas-id="${kelas.id}">
                         <td class="text-white">Kelas ${kelas.tingkatKelas}</td>
                         <td class="text-white">${kelas.jumlahSiswaLelaki}</td>
                         <td class="text-white">${kelas.jumlahSiswaPerempuan}</td>
                         <td class="text-white">${kelas.totalSiswa}</td>
-                    `;
-                        kelasTableBody.appendChild(row);
+                    </tr>
+                `;
                     });
+
+                    // Periksa apakah konten berubah sebelum memperbarui DOM
+                    if (kelasTableBody.innerHTML !== htmlContent) {
+                        kelasTableBody.innerHTML = htmlContent;
+                        // Tambahkan animasi untuk baris baru
+                        const rows = kelasTableBody.querySelectorAll('tr');
+                        rows.forEach(row => {
+                            row.style.animation = 'fadeIn 0.5s';
+                        });
+                    }
                 })
-                .catch(error => console.error('Error:', error));
+                .catch(error => {
+                    console.error('Error:', error);
+                    const kelasTableBody = document.getElementById('kelas-data');
+                    kelasTableBody.innerHTML = `
+                <tr>
+                    <td colspan="4" class="text-white text-center">
+                        Terjadi kesalahan saat memuat data. Mencoba memuat ulang...
+                    </td>
+                </tr>
+            `;
+                });
+        }
+
+        // Tambahkan CSS untuk animasi
+        const style = document.createElement('style');
+        style.textContent = `
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card, tr {
+        animation: fadeIn 0.5s ease-out;
+    }
+
+    .update-notification {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #28a745;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        animation: slideIn 0.3s ease-out;
+        z-index: 1000;
+    }
+
+    @keyframes slideIn {
+        from { transform: translateX(100%); }
+        to { transform: translateX(0); }
+    }
+`;
+        document.head.appendChild(style);
+
+        // Modifikasi event listener untuk memulai pembaruan real-time
+        document.addEventListener('DOMContentLoaded', () => {
+            // Muat data awal
+            fetchDataGuru();
+            fetchDataKelas();
+
+            // Mulai pembaruan real-time
+            startRealTimeUpdates();
+
+            // Tampilkan notifikasi ketika halaman siap
+            showNotification('Halaman siap - Pembaruan otomatis aktif');
+        });
+
+        // Fungsi untuk menampilkan notifikasi
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'update-notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            // Hapus notifikasi setelah 3 detik
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
         }
 
         // Panggil fungsi fetchDataGuru setelah halaman selesai dimuat
         document.addEventListener('DOMContentLoaded', fetchDataGuru);
-        document.addEventListener('DOMContentLoaded', fecthDataKelas);
+        document.addEventListener('DOMContentLoaded', fetchDataKelas);
     </script>
 
     <!-- Footer -->
